@@ -1,0 +1,40 @@
+{
+    "name": "vegvisir/laratrust-cli",
+    "autoload": {
+        "psr-4": {
+            "Vegvisir\\LaratrustCli\\": "src/"
+        }
+    },
+    "description": "Command-line interface for Laratrust",
+    "keywords": [
+        "laravel",
+        "laratrust",
+        "auth",
+        "roles",
+        "permissions",
+        "acl",
+        "console",
+        "cli"
+    ],
+    "homepage": "https://github.com/vegvisir-for-all/laratrust-cli",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "santigarcor/laratrust": "4.0.*"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Marek Ognicki",
+            "email": "marek@taxi.edu.pl"
+        }
+    ],
+    "extra": {
+        "laravel":{
+            "providers": [
+                "Vegvisir\\LaratrustCli\\LaratrustCliServiceProvider"
+            ]
+        }
+    }
+}
