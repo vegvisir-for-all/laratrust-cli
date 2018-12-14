@@ -23,7 +23,7 @@
     "require": {
         "santigarcor/laratrust": "4.0.*"
     },
-    "license": "GPLv3",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Marek Ognicki",
