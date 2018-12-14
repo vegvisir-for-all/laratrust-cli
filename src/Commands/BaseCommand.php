@@ -1,8 +1,8 @@
 <?php
 
- namespace Vegvisir\LaratrustCli\Commands;
+namespace Vegvisir\LaratrustCli\Commands;
 
- use Illuminate\Console\Command;
+use Illuminate\Console\Command;
  use Vegvisir\LaratrustCli\Models\Permission;
  use Vegvisir\LaratrustCli\Models\Role;
  use Vegvisir\LaratrustCli\Models\Team;
@@ -11,173 +11,156 @@
  use Vegvisir\LaratrustCli\Traits\SuccessTrait;
 
  /**
-  * BaseCommand class is responsible for basic console commands, common for all operations the package provides
+  * BaseCommand class is responsible for basic console commands, common for all operations the package provides.
   *
   * @licence GPL
-  * @package LaratrustCli
   */
  class BaseCommand extends Command
  {
+     use ErrorTrait, SuccessTrait;
 
-    use ErrorTrait, SuccessTrait;
+     /**
+      * Loads Role by given name.
+      *
+      * @param string name
+      * @param bool shouldExist Set to true if a Role should exist, otherwise - set to false
+      *
+      * @return false|Role
+      */
+     protected function getRole($name, $shouldExist)
+     {
+         $role = Role::query()->where(Role::PROPERTY_NAME, $name)->first();
 
-    /**
-     * Loads Role by given name
-     *
-     * @param string name
-     * @param bool shouldExist Set to true if a Role should exist, otherwise - set to false
-     * @return false|Role
-     */
-    protected function getRole($name, $shouldExist)
-    {
+         if ($role == null) {
+             if ($shouldExist) {
+                 $this->doesNotExist('role', $name);
 
-        $role = Role::query()->where(Role::PROPERTY_NAME, $name)->first();
+                 return false;
+             }
 
-        if($role == null) {
+             return true;
+         } elseif (!$shouldExist) {
+             $this->alreadyExists('role', $name);
 
-            if($shouldExist) {
+             return false;
+         }
 
-                $this->doesNotExist('role', $name);
-                return false;
-            }
+         return $role;
+     }
 
-            return true;
+     /**
+      * Loads Permission by given name.
+      *
+      * @param string name
+      * @param bool shouldExist Set to true if a Permission should exist, otherwise - set to false
+      *
+      * @return false|Permission
+      */
+     protected function getPermission($name, $shouldExist)
+     {
+         $permission = Permission::query()->where(Permission::PROPERTY_NAME, $name)->first();
 
-        } elseif (!$shouldExist) {
+         if ($permission == null) {
+             if ($shouldExist) {
+                 $this->doesNotExist('permission', $name);
 
-            $this->alreadyExists('role', $name);
-            return false;
+                 return false;
+             }
 
-        }
+             return true;
+         } elseif (!$shouldExist) {
+             $this->alreadyExists('permission', $name);
 
-        return $role;
+             return false;
+         }
 
-    }
+         return $permission;
+     }
 
-    /**
-     * Loads Permission by given name
-     *
-     * @param string name
-     * @param bool shouldExist Set to true if a Permission should exist, otherwise - set to false
-     * @return false|Permission
-     */
-    protected function getPermission($name, $shouldExist)
-    {
+     /**
+      * Loads Team by given name.
+      *
+      * @param string name
+      * @param bool shouldExist Set to true if a Team should exist, otherwise - set to false
+      *
+      * @return false|Team
+      */
+     protected function getTeam($name, $shouldExist)
+     {
+         $team = Team::query()->where(Team::PROPERTY_NAME, $name)->first();
 
-        $permission = Permission::query()->where(Permission::PROPERTY_NAME, $name)->first();
+         if ($team == null) {
+             if ($shouldExist) {
+                 $this->doesNotExist('team', $name);
 
-        if($permission == null) {
+                 return false;
+             }
 
-            if($shouldExist) {
+             return true;
+         } elseif (!$shouldExist) {
+             $this->alreadyExists('team', $name);
 
-                $this->doesNotExist('permission', $name);
-                return false;
-            }
+             return false;
+         }
 
-            return true;
+         return $team;
+     }
 
-        } elseif (!$shouldExist) {
+     /**
+      * Loads User by given name (e-mail).
+      *
+      * @param string email
+      * @param bool shouldExist Set to true if a User should exist, otherwise - set to false
+      *
+      * @return false|User
+      */
+     protected function getUser($email, $shouldExist = true)
+     {
+         $modelName = UserProxy::getUserModel();
 
-            $this->alreadyExists('permission', $name);
-            return false;
+         if (false == $modelName) {
+             $this->error('User model does not exist. Check `user_model` value in `config/laravel-cli.php`');
 
-        }
+             return;
+         }
 
-        return $permission;
+         $proxyModel = new $modelName();
 
-    }
+         $userModel = $proxyModel::getApplicationModel();
 
-    /**
-     * Loads Team by given name
-     *
-     * @param string name
-     * @param bool shouldExist Set to true if a Team should exist, otherwise - set to false
-     * @return false|Team
-     */
-    protected function getTeam($name, $shouldExist)
-    {
+         $user = $userModel->query()->where('email', $email)->first();
 
-        $team = Team::query()->where(Team::PROPERTY_NAME, $name)->first();
+         if ($user == null) {
+             if ($shouldExist) {
+                 $this->doesNotExist('user', $email);
 
-        if($team == null) {
+                 return false;
+             }
 
-            if($shouldExist) {
+             return true;
+         } elseif (!$shouldExist) {
+             $this->alreadyExists('user', $email);
 
-                $this->doesNotExist('team', $name);
-                return false;
-            }
+             return false;
+         }
 
-            return true;
+         return $user;
+     }
 
-        } elseif (!$shouldExist) {
+     /**
+      * Checks whether Laratrust functionality is on and - if not - outputs an error message.
+      *
+      * @return bool
+      */
+     protected function isTeamFunctionalityOn()
+     {
+         // Checking if team functionality is on
+         if (!config('laratrust.use_teams')) {
+             $this->noTeamFunctionality();
 
-            $this->alreadyExists('team', $name);
-            return false;
+             return false;
+         }
 
-        }
-
-        return $team;
-
-    }
-
-    /**
-     * Loads User by given name (e-mail)
-     *
-     * @param string email
-     * @param bool shouldExist Set to true if a User should exist, otherwise - set to false
-     * @return false|User
-     */
-    protected function getUser($email, $shouldExist = true)
-    {
-
-        $modelName = UserProxy::getUserModel();
-
-        if(false == $modelName) {
-            $this->error("User model does not exist. Check `user_model` value in `config/laravel-cli.php`");
-            return null;
-        }
-
-        $proxyModel = new $modelName;
-
-        $userModel = $proxyModel::getApplicationModel();
-
-        $user = $userModel->query()->where('email', $email)->first();
-
-        if($user == null) {
-
-            if($shouldExist) {
-
-                $this->doesNotExist('user', $email);
-                return false;
-            }
-
-            return true;
-
-        } elseif(!$shouldExist) {
-
-            $this->alreadyExists('user', $email);
-            return false;
-
-        }
-
-        return $user;
-
-    }
-
-    /**
-     * Checks whether Laratrust functionality is on and - if not - outputs an error message
-     *
-     * @return bool
-     */
-    protected function isTeamFunctionalityOn()
-    {
-        // Checking if team functionality is on
-        if(!config('laratrust.use_teams')) {
-            $this->noTeamFunctionality();
-            return false;
-        }
-
-        return true;
-    }
-
+         return true;
+     }
  }

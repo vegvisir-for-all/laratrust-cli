@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Team;
 
 class ListAll extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -31,19 +30,18 @@ class ListAll extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-
-        if(!parent::isTeamFunctionalityOn()) {
-            return null;
+        if (!parent::isTeamFunctionalityOn()) {
+            return;
         }
 
         $headers = [
-            'ID', 'Name', 'Display name', 'Description'
+            'ID', 'Name', 'Display name', 'Description',
         ];
 
         $teams = Team::all(

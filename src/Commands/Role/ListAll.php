@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Role;
 
 class ListAll extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -31,14 +30,14 @@ class ListAll extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
         $headers = [
-            'ID', 'Name', 'Display name', 'Description'
+            'ID', 'Name', 'Display name', 'Description',
         ];
 
         $roles = Role::all(

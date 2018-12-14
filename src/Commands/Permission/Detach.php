@@ -6,7 +6,6 @@ use Vegvisir\LaratrustCli\Commands\BaseCommand;
 
 class Detach extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -32,7 +31,7 @@ class Detach extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -42,17 +41,18 @@ class Detach extends BaseCommand
         $roleName = $this->argument('role_name');
 
         $permission = $this->getPermission($permissionName, true);
-        if(!$permission) {
+        if (!$permission) {
             return;
         }
 
         $role = $this->getRole($roleName, true);
-        if(!$role) {
+        if (!$role) {
             return;
         }
 
-        if(!$role->hasPermission($permissionName)) {
+        if (!$role->hasPermission($permissionName)) {
             $this->notAttached('permission', $permissionName, 'role', $roleName);
+
             return;
         }
 
