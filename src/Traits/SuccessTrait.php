@@ -2,39 +2,37 @@
 
 namespace Vegvisir\LaratrustCli\Traits;
 
- /**
-  * Trait for generating success messages
-  *
-  * @licence GPL
-  * @package LaratrustCli
-  */
+/**
+ * Trait for generating success messages.
+ *
+ * @licence GPL
+ */
 trait SuccessTrait
 {
-
     /**
-     * Outputs a creation success message
+     * Outputs a creation success message.
      *
      * @param $what string Resource being created type
      * @param $name string Resource being created name
      */
     protected function successCreating($what, $whatName)
     {
-        $this->info(\ucfirst($what) . " '$whatName' created successfully. Glad I could help :)");
+        $this->info(\ucfirst($what)." '$whatName' created successfully. Glad I could help :)");
     }
 
     /**
-     * Outputs a deletion success message
+     * Outputs a deletion success message.
      *
      * @param $what string Resource being created type
      * @param $name string Resource being created name
      */
     protected function successDeleting($what, $whatName)
     {
-        $this->info(\ucfirst($what) . " '$whatName' deleted successfully. Glad I could help :)");
+        $this->info(\ucfirst($what)." '$whatName' deleted successfully. Glad I could help :)");
     }
 
     /**
-     * Outputs an attaching success message
+     * Outputs an attaching success message.
      *
      * @param $what string Resource being attached type
      * @param $name string Resource being attached name
@@ -44,18 +42,17 @@ trait SuccessTrait
      */
     protected function successAttaching($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
-        $this->info(\ucfirst($what) . " '$whatName' attached successfully to $whatTo '$whatToName'$teamInfo. Glad I could help :)");
+        $this->info(\ucfirst($what)." '$whatName' attached successfully to $whatTo '$whatToName'$teamInfo. Glad I could help :)");
     }
 
     /**
-     * Outputs an detaching success message
+     * Outputs an detaching success message.
      *
      * @param $what string Resource being detached type
      * @param $name string Resource being detached name
@@ -65,14 +62,12 @@ trait SuccessTrait
      */
     protected function successDetaching($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
-        $this->info(\ucfirst($what) . " '$whatName' detached successfully from $whatTo '$whatToName'$teamInfo. Glad I could help :)");
+        $this->info(\ucfirst($what)." '$whatName' detached successfully from $whatTo '$whatToName'$teamInfo. Glad I could help :)");
     }
-
 }

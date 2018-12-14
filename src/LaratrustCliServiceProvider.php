@@ -36,24 +36,23 @@ class LaratrustCliServiceProvider extends ServiceProvider
 
     protected function registerPermissionCommands()
     {
-
-        $this->app->singleton('command.laratrust-cli.permission.attach', function() {
+        $this->app->singleton('command.laratrust-cli.permission.attach', function () {
             return new Commands\Permission\Attach();
         });
 
-        $this->app->singleton('command.laratrust-cli.permission.create', function() {
+        $this->app->singleton('command.laratrust-cli.permission.create', function () {
             return new Commands\Permission\Create();
         });
 
-        $this->app->singleton('command.laratrust-cli.permission.delete', function() {
+        $this->app->singleton('command.laratrust-cli.permission.delete', function () {
             return new Commands\Permission\Delete();
         });
 
-        $this->app->singleton('command.laratrust-cli.permission.detach', function() {
+        $this->app->singleton('command.laratrust-cli.permission.detach', function () {
             return new Commands\Permission\Detach();
         });
 
-        $this->app->singleton('command.laratrust-cli.permission.list', function() {
+        $this->app->singleton('command.laratrust-cli.permission.list', function () {
             return new Commands\Permission\ListAll();
         });
 
@@ -62,30 +61,29 @@ class LaratrustCliServiceProvider extends ServiceProvider
             'command.laratrust-cli.permission.create',
             'command.laratrust-cli.permission.delete',
             'command.laratrust-cli.permission.detach',
-            'command.laratrust-cli.permission.list'
+            'command.laratrust-cli.permission.list',
         ]);
     }
 
     protected function registerRoleCommands()
     {
-
-        $this->app->singleton('command.laratrust-cli.role.attach', function() {
+        $this->app->singleton('command.laratrust-cli.role.attach', function () {
             return new Commands\Role\Attach();
         });
 
-        $this->app->singleton('command.laratrust-cli.role.create', function() {
+        $this->app->singleton('command.laratrust-cli.role.create', function () {
             return new Commands\Role\Create();
         });
 
-        $this->app->singleton('command.laratrust-cli.role.delete', function() {
+        $this->app->singleton('command.laratrust-cli.role.delete', function () {
             return new Commands\Role\Delete();
         });
 
-        $this->app->singleton('command.laratrust-cli.role.detach', function() {
+        $this->app->singleton('command.laratrust-cli.role.detach', function () {
             return new Commands\Role\Detach();
         });
 
-        $this->app->singleton('command.laratrust-cli.role.list', function() {
+        $this->app->singleton('command.laratrust-cli.role.list', function () {
             return new Commands\Role\ListAll();
         });
 
@@ -94,30 +92,29 @@ class LaratrustCliServiceProvider extends ServiceProvider
             'command.laratrust-cli.role.create',
             'command.laratrust-cli.role.delete',
             'command.laratrust-cli.role.detach',
-            'command.laratrust-cli.role.list'
+            'command.laratrust-cli.role.list',
         ]);
     }
 
     protected function registerTeamCommands()
     {
-
-        $this->app->singleton('command.laratrust-cli.team.attach', function() {
+        $this->app->singleton('command.laratrust-cli.team.attach', function () {
             return new Commands\Team\Attach();
         });
 
-        $this->app->singleton('command.laratrust-cli.team.create', function() {
+        $this->app->singleton('command.laratrust-cli.team.create', function () {
             return new Commands\Team\Create();
         });
 
-        $this->app->singleton('command.laratrust-cli.team.delete', function() {
+        $this->app->singleton('command.laratrust-cli.team.delete', function () {
             return new Commands\Team\Delete();
         });
 
-        $this->app->singleton('command.laratrust-cli.team.detach', function() {
+        $this->app->singleton('command.laratrust-cli.team.detach', function () {
             return new Commands\Team\Detach();
         });
 
-        $this->app->singleton('command.laratrust-cli.team.list', function() {
+        $this->app->singleton('command.laratrust-cli.team.list', function () {
             return new Commands\Team\ListAll();
         });
 
@@ -126,7 +123,7 @@ class LaratrustCliServiceProvider extends ServiceProvider
             'command.laratrust-cli.team.create',
             'command.laratrust-cli.team.delete',
             'command.laratrust-cli.team.detach',
-            'command.laratrust-cli.team.list'
+            'command.laratrust-cli.team.list',
         ]);
     }
 }

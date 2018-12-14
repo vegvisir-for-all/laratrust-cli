@@ -2,17 +2,15 @@
 
 namespace Vegvisir\LaratrustCli\Traits;
 
- /**
-  * Trait for generating error messages
-  *
-  * @licence GPL
-  * @package LaratrustCli
-  */
+/**
+ * Trait for generating error messages.
+ *
+ * @licence GPL
+ */
 trait ErrorTrait
 {
-
     /**
-     * Outputs a does-not-exist error message
+     * Outputs a does-not-exist error message.
      *
      * @param $what string Resource type
      * @param $name string Resource name
@@ -23,7 +21,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs an already-exists error message
+     * Outputs an already-exists error message.
      *
      * @param $what string Resource type
      * @param $name string Resource name
@@ -34,7 +32,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs a non-attached error message
+     * Outputs a non-attached error message.
      *
      * @param $what string Resource being attached type
      * @param $name string Resource being attached name
@@ -44,10 +42,9 @@ trait ErrorTrait
      */
     protected function notAttached($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
@@ -55,7 +52,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs an already-attached error
+     * Outputs an already-attached error.
      *
      * @param $what string Resource being attached type
      * @param $name string Resource being attached name
@@ -65,10 +62,9 @@ trait ErrorTrait
      */
     protected function alreadyAttached($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
@@ -76,7 +72,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs a creation error message
+     * Outputs a creation error message.
      *
      * @param $what string Resource being created type
      * @param $name string Resource being created name
@@ -87,7 +83,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs a deletion error message
+     * Outputs a deletion error message.
      *
      * @param $what string Resource being deleted type
      * @param $name string Resource being deleted name
@@ -98,7 +94,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs an attaching error message
+     * Outputs an attaching error message.
      *
      * @param $what string Resource being attached type
      * @param $name string Resource being attached name
@@ -108,10 +104,9 @@ trait ErrorTrait
      */
     protected function errorAttaching($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
@@ -119,7 +114,7 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs an detaching error message
+     * Outputs an detaching error message.
      *
      * @param $what string Resource being detached type
      * @param $name string Resource being detached name
@@ -129,10 +124,9 @@ trait ErrorTrait
      */
     protected function errorDetaching($what, $whatName, $whatTo, $whatToName, $teamName = null)
     {
-
         $teamInfo = '';
 
-        if($teamName !== null) {
+        if ($teamName !== null) {
             $teamInfo = " on '$teamName' team";
         }
 
@@ -140,11 +134,10 @@ trait ErrorTrait
     }
 
     /**
-     * Outputs a no-team-functionality error message
+     * Outputs a no-team-functionality error message.
      */
     protected function noTeamFunctionality()
     {
         return $this->error('Team functionality is off. Set `use_teams` in `config/laratrust.php` to `on` to turn it on');
     }
-
 }

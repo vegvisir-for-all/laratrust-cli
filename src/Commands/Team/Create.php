@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Team;
 
 class Create extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -34,21 +33,20 @@ class Create extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-
-        if(!parent::isTeamFunctionalityOn()) {
-            return null;
+        if (!parent::isTeamFunctionalityOn()) {
+            return;
         }
 
         $name = $this->argument('name');
         $team = $this->getTeam($name, false);
 
-        if(!$team) {
+        if (!$team) {
             return;
         }
 
@@ -57,9 +55,9 @@ class Create extends BaseCommand
 
         try {
             Team::create([
-                Team::PROPERTY_NAME => $name,
+                Team::PROPERTY_NAME         => $name,
                 Team::PROPERTY_DISPLAY_NAME => $displayName,
-                Team::PROPERTY_DESCRIPTION => $description
+                Team::PROPERTY_DESCRIPTION  => $description,
             ]);
 
             $this->successCreating('team', $name);

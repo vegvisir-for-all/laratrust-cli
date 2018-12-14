@@ -6,7 +6,6 @@ use Vegvisir\LaratrustCli\Commands\BaseCommand;
 
 class Delete extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -32,7 +31,7 @@ class Delete extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -41,25 +40,22 @@ class Delete extends BaseCommand
         $permissionName = $this->argument('name');
         $permission = $this->getPermission($permissionName, true);
 
-        if($permission == false) {
+        if ($permission == false) {
             return;
         }
 
         try {
             $permission->delete();
 
-            if($this->option('soft')) {
+            if ($this->option('soft')) {
                 $permission->roles()->sync([]);
                 $permission->teams()->sync([]);
                 $permission->forceDelete();
             }
 
             $this->successDeleting('permission', $permissionName);
-
         } catch (\Exception $e) {
-
             $this->errorDeleting('permission', $permissionName);
-
         }
     }
 }

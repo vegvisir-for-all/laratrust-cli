@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Role;
 
 class Delete extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -33,7 +32,7 @@ class Delete extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -42,14 +41,14 @@ class Delete extends BaseCommand
         $name = $this->argument('name');
         $role = $this->getRole($name, true);
 
-        if($role == null) {
-            return null;
+        if ($role == null) {
+            return;
         }
 
         try {
             $role->delete();
 
-            if($this->option('soft')) {
+            if ($this->option('soft')) {
                 $role->users()->sync([]);
                 $role->permissions()->sync([]);
                 $role->teams()->sync([]);
@@ -57,11 +56,8 @@ class Delete extends BaseCommand
             }
 
             $this->successDeleting('role', $name);
-
         } catch (\Exception $e) {
-
             $this->errorDeleting('role', $name);
-
         }
     }
 }
