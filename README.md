@@ -1,5 +1,10 @@
 # Laratrust CLI
 
+[![Latest Stable Version](https://poser.pugx.org/vegvisir/laratrust-cli/v/stable)](https://packagist.org/packages/santigarcor/laratrust)
+[![Total Downloads](https://poser.pugx.org/vegvisir/laratrust-cli/downloads)](https://packagist.org/packages/santigarcor/laratrust)
+[![StyleCI](https://styleci.io/repos/161757913/shield)](https://styleci.io/repos/161757913)
+[![License](https://poser.pugx.org/vegvisir/laratrust-cli/license)](https://packagist.org/packages/santigarcor/laratrust)
+
 Provides a command line interface for [Laratrust](https://github.com/santigarcor/laratrust). Inspired by [entrust-cli](https://github.com/LinearSoft/entrust-cli).
 
 ## Requirements
