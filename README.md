@@ -10,39 +10,9 @@ Good news is that Laratrust CLI is compatible also with Team functionality of th
 
 ## Installation
 
-Currently, Laratrust CLI isn't available as a Composer package (matter of hours). Therefore, in order to install it as a Laravel dependency, you need to do as following:
-
-### 1. Clone this repo to the `packages/vegvisir/laratrust-cli` directory
-
 ```bash
-$ git clone https://gitlab.com/veg-laravel/laratrust-cli.git
+$ composer require vegvisir/laratrust-cli
 ```
-
-### 2. Add a path repository to your `composer.json` file
-
-Thanks to that, `composer` will know where to search for `vegvisir/laratrust-cli` package.
-
-```json
-...
-"repositories": [
-    {
-        "type": "path",
-        "url": "https://gitlab.com/veg-laravel/laratrust-cli",
-        "options": {
-            "symlink": "true"
-        }
-    }
-],
-...
-```
-
-### 3. Install package
-
-```bash
-$ composer require vegvisir/laratrust-cli "@dev"
-```
-
-**Note `@dev` as a version number. Since currently the package is in development mode, omitting that part could result in `minimum-stability` issues.**
 
 ### 4. Add service provider (Laravel <5.5)
 
