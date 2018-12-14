@@ -6,7 +6,6 @@ use Vegvisir\LaratrustCli\Commands\BaseCommand;
 
 class Attach extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -34,40 +33,40 @@ class Attach extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-
-        if(!parent::isTeamFunctionalityOn()) {
-            return null;
+        if (!parent::isTeamFunctionalityOn()) {
+            return;
         }
 
         $roleName = $this->argument('role_name');
         $role = $this->getRole($roleName, true);
 
-        if(!$role) {
+        if (!$role) {
             return;
         }
 
         $identity = $this->argument('identity');
         $user = $this->getUser($identity, true);
 
-        if(!$user) {
+        if (!$user) {
             return;
         }
 
         $teamName = $this->argument('team_name');
         $team = $this->getTeam($teamName, true);
 
-        if(!$team) {
-            return null;
+        if (!$team) {
+            return;
         }
 
-        if($user->hasRole($roleName, $teamName)) {
+        if ($user->hasRole($roleName, $teamName)) {
             $this->alreadyAttached('role', $roleName, 'user', $identity, $teamName);
+
             return;
         }
 

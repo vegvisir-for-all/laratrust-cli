@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Role;
 
 class Create extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -34,7 +33,7 @@ class Create extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -43,7 +42,7 @@ class Create extends BaseCommand
         $name = $this->argument('name');
         $role = $this->getRole($name, false);
 
-        if(!$role) {
+        if (!$role) {
             return;
         }
 
@@ -52,9 +51,9 @@ class Create extends BaseCommand
 
         try {
             Role::create([
-                Role::PROPERTY_NAME => $name,
+                Role::PROPERTY_NAME         => $name,
                 Role::PROPERTY_DISPLAY_NAME => $displayName,
-                Role::PROPERTY_DESCRIPTION => $description
+                Role::PROPERTY_DESCRIPTION  => $description,
             ]);
 
             dd($this->successCreating('role', $name));

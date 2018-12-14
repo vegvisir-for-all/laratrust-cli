@@ -7,7 +7,6 @@ use Vegvisir\LaratrustCli\Models\Permission;
 
 class Create extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -34,7 +33,7 @@ class Create extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -43,7 +42,7 @@ class Create extends BaseCommand
         $permissionName = $this->argument('name');
         $permission = $this->getPermission($permissionName, false);
 
-        if($permission == false) {
+        if ($permission == false) {
             return;
         }
 
@@ -52,9 +51,9 @@ class Create extends BaseCommand
 
         try {
             Permission::create([
-                Permission::PROPERTY_NAME => $permissionName,
+                Permission::PROPERTY_NAME         => $permissionName,
                 Permission::PROPERTY_DISPLAY_NAME => $displayName,
-                Permission::PROPERTY_DESCRIPTION => $description
+                Permission::PROPERTY_DESCRIPTION  => $description,
             ]);
 
             $this->successCreating('permission', $permissionName);

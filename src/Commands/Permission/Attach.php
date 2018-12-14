@@ -6,7 +6,6 @@ use Vegvisir\LaratrustCli\Commands\BaseCommand;
 
 class Attach extends BaseCommand
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -32,7 +31,7 @@ class Attach extends BaseCommand
     }
 
     /**
-     * Execute the console command
+     * Execute the console command.
      *
      * @return mixed
      */
@@ -42,17 +41,18 @@ class Attach extends BaseCommand
         $roleName = $this->argument('role_name');
 
         $permission = $this->getPermission($permissionName, true);
-        if(!$permission) {
+        if (!$permission) {
             return;
         }
 
         $role = $this->getRole($roleName, true);
-        if(!$role) {
+        if (!$role) {
             return;
         }
 
-        if($role->hasPermission($permissionName)) {
+        if ($role->hasPermission($permissionName)) {
             $this->alreadyAttached('permission', $permissionName, 'role', $roleName);
+
             return;
         }
 

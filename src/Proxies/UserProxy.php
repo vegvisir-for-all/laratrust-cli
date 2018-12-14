@@ -2,16 +2,14 @@
 
 namespace Vegvisir\LaratrustCli\Proxies;
 
- /**
-  * User proxy is responsible for retrieving appropriate User model ORM system
-  * which can be Laravel or jenssegers/mongodb Eloquent.
-  *
-  * @licence GPL
-  * @package LaratrustCli
-  */
-class User
+/**
+ * User proxy is responsible for retrieving appropriate User model ORM system
+ * which can be Laravel or jenssegers/mongodb Eloquent.
+ *
+ * @licence GPL
+ */
+class UserProxy
 {
-
     /**
      * Retrieves name of the appropriate user model ORM, valid with application
      * ORM system.
@@ -20,13 +18,12 @@ class User
      */
     public static function getUserModel()
     {
-         $userModelName = config('laratrust-cli.user_model');
+        $userModelName = config('laratrust-cli.user_model');
 
-         if(!class_exists($userModelName)) {
-             return false;
-         }
+        if (!class_exists($userModelName)) {
+            return false;
+        }
 
-         return $userModelName;
+        return $userModelName;
     }
-
 }
