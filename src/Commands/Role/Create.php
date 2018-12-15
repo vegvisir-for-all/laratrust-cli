@@ -56,7 +56,7 @@ class Create extends BaseCommand
                 Role::PROPERTY_DESCRIPTION  => $description,
             ]);
 
-            dd($this->successCreating('role', $name));
+            $this->successCreating('role', $name);
         } catch (\Exception $e) {
             $this->errorCreating('role', $name);
         }
